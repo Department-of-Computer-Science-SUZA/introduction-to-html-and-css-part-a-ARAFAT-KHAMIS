@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Credit Card Validator</title>
+  <link rel="stylesheet" href="credit.css">
+ 
+</head>
+<body>
+
+<div class="container">
+  <h2>Credit Card Validator</h2>
+  <form onsubmit="return validateCard()">
+    <div class="form-group">
+      <label for="cardNumber">Enter Credit Card Number</label>
+      <input type="text" id="cardNumber" placeholder="e.g. 4111111111111111">
+      <div id="error" class="error"></div>
+      <div id="success" class="success"></div>
+    </div>
+    <button type="submit" class="btn">Validate</button>
+  </form>
+  <script src="credit.js"></script>
+</div>
+</body>
+</html>
