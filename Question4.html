@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Whitaker's Desserts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f1f8e9;
+      padding: 40px;
+      color: #4e342e;
+    }
+    h1 {
+      text-align: center;
+      color: #6a1b9a;
+      margin-bottom: 30px;
+    }
+    h2 {
+      color: #3e2723;
+      margin-top: 40px;
+    }
+    #cookie-header {
+      color: #f7f16d; /* Big Bird Yellow */
+    }
+    ul {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      list-style: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      margin-top: 10px;
+    }
+    li {
+      padding: 12px 16px;
+      border-bottom: 1px solid #eee;
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+    #cookie-count {
+      font-weight: bold;
+      margin-top: 10px;
+      color: #2e7d32;
+    }
+    #moar-pie {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #ab47bc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #moar-pie:hover {
+      background-color: #8e24aa;
+    }
+  </style>
+  <script defer>
+    window.onload = function () {
+      const cookieList = document.querySelector("#cookie-jar");
+      const cookieCountText = document.getElementById("cookie-count");
+
+      function updateCookieCount() {
+        const cookies = cookieList.querySelectorAll(".cookie");
+        cookieCountText.textContent = `${cookies.length}! There are ${cookies.length} cookie(s) in the cookie jar!`;
+      }
+
+      updateCookieCount();
+
+      setInterval(() => {
+        const cookies = cookieList.querySelectorAll(".cookie");
+        if (cookies.length > 0) {
+          cookieList.removeChild(cookies[cookies.length - 1]);
+          updateCookieCount();
+        }
+      }, 30000); // every 30 seconds
+    };
+  </script>
+</head>
+<body>
+  <h1>Whitaker's Desserts</h1>
+
+  <h2 id="cookie-header">Whitaker's Cookie Jar:</h2>
+  <ul id="cookie-jar">
+    <li class="cookie">Chocolate Chip</li>
+    <li class="cookie">Oatmeal Raisin</li>
+    <li class="cookie">Macaroon</li>
+  </ul>
+  <p id="cookie-count"></p>
+
+  <h2>Whitaker's Pie Cupboard:</h2>
+  <ul id="pie-cupboard">
+    <!-- Future pie items could go here -->
+  </ul>
+  <button id="moar-pie">Moar Pie!</button>
+</body>
+</html>

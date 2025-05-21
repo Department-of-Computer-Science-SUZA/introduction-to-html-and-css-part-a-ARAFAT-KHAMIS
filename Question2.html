@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tag Validator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f6f8fc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+    h2 {
+      color: #009688;
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #009688;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00796b;
+    }
+    #tagResult {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Self-Closing Tag Validator</h2>
+    <input type="text" id="tagInput" placeholder='e.g. <img src="img.jpg" />' />
+    <button onclick="validateTag()">Validate Tag</button>
+    <div id="tagResult"></div>
+  </div>
+
+  <script>
+    function validateTag() {
+      const input = document.getElementById("tagInput").value.trim();
+      const result = document.getElementById("tagResult");
+
+      if (!input.startsWith("<") || !input.endsWith("/>")) {
+        result.textContent = "❌ Must start with '<' and end with '/>'";
+        result.style.color = "red";
+        return;
+      }
+
+      const content = input.slice(1, -2).trim();
+      const firstPart = content.split(/\s+/)[0];
+
+      if (!firstPart || !/^[a-zA-Z][a-zA-Z0-9-]*$/.test(firstPart)) {
+        result.textContent = "❌ Invalid or missing tag name";
+        result.style.color = "red";
+        return;
+      }
+
+      result.textContent = "✅ Valid self-closing tag!";
+      result.style.color = "green";
+    }
+  </script>
+</body>
+</html>

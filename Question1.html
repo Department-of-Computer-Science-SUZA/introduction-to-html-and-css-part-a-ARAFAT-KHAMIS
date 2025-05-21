@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Price Validator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 40px;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Price Validator</h2>
+    <input type="text" id="price" placeholder="Enter price like $14.99">
+    <button onclick="validatePrice()">Validate</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function validatePrice() {
+      const input = document.getElementById("price").value.trim();
+      const result = document.getElementById("result");
+
+      if (input[0] !== '$') {
+        result.textContent = "❌ Invalid: Must start with $";
+        return;
+      }
+
+      const parts = input.slice(1).split('.');
+      if (parts.length !== 2) {
+        result.textContent = "❌ Invalid: Must contain one decimal point";
+        return;
+      }
+
+      const [dollars, cents] = parts;
+      if (cents.length !== 2 || isNaN(cents) || (dollars && isNaN(dollars))) {
+        result.textContent = "❌ Invalid: Should be in $X.XX format";
+        return;
+      }
+
+      result.textContent = "✅ Valid Price!";
+    }
+  </script>
+</body>
+</html>
